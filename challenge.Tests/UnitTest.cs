@@ -44,4 +44,12 @@ public class UnitTest
         var result = new Phone().OldPhonePad("8 88777444666*664#");
         Assert.Equal("TURING", result);
     }
+
+    [Fact]
+    [Description("Input 222 28136664# should be show CAT&DOG")]
+    public void Input_ShouldShowCATANDDOG()
+    {
+        var result = new Phone().OldPhonePad("222 28136664#");
+        Assert.Equal("CAT&DOG", result);
+    }
 }

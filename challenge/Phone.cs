@@ -4,6 +4,7 @@ public class Phone
 {
     private Dictionary<char, char[]> characterList = new Dictionary<char, char[]>()
         {
+            {'1', [ '&', '\'', '(']},
             {'2', [ 'A', 'B', 'C' ]},
             {'3', [ 'D', 'E', 'F' ]},
             {'4', [ 'G', 'H', 'I' ]},
