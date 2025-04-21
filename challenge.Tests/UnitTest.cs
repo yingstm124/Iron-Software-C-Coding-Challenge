@@ -52,4 +52,76 @@ public class UnitTest
         var result = new Phone().OldPhonePad("222 28136664#");
         Assert.Equal("CAT&DOG", result);
     }
+
+    [Fact]
+    [Description("Input ***2222220 should be show C ")]
+    public void Input_ShouldShowCWithSpace()
+    {
+        var result = new Phone().OldPhonePad("***2222220");
+        Assert.Equal("C ",result);
+    }
+
+    [Fact]
+    [Description("Input 2 should be show AD")]
+    public void Input_ShouldShowJustA()
+    {
+        var result = new Phone().OldPhonePad("23");
+        Assert.Equal("AD",result);
+    }
+
+    [Fact]
+    [Description("Input #2 should be show empty")]
+    public void Input_IfSharp_ShouldShowEmpty()
+    {
+        var result = new Phone().OldPhonePad("#2");
+        Assert.Equal("",result);
+    }
+
+    [Fact]
+    [Description("Input 2 should be show A")]
+    public void Input_ShouldShowA()
+    {
+        var result = new Phone().OldPhonePad("2");
+        Assert.Equal("A",result);
+    }
+
+    [Fact]
+    [Description("Input *** should be show empty")]
+    public void Input_IfStar_ShouldShowEmpty()
+    {
+        var result = new Phone().OldPhonePad("***");
+        Assert.Equal("",result);
+    }
+
+    [Fact]
+    [Description("Input *0*0 should be show space")]
+    public void Input_IfStarBetaween_ShouldShowSpace() 
+    {
+        var result = new Phone().OldPhonePad("*0*0");
+        Assert.Equal(" ",result);
+    }
+
+    [Fact]
+    [Description("Input **222*22 should be show B")]
+    public void Input_IfStarBetaween_ShouldShowB() 
+    {
+        var result = new Phone().OldPhonePad("**222*22");
+        Assert.Equal("B",result);
+    }
+
+    [Fact]
+    [Description("Input 99 should be show X")]
+    public void Input_ShouldShowX() 
+    {
+        var result = new Phone().OldPhonePad("99");
+        Assert.Equal("X",result);
+    }
+
+    [Fact]
+    [Description("Input 99 999 9999* should be show XY")]
+    public void Input_ShouldShowXY() 
+    {
+        var result = new Phone().OldPhonePad("99 999 9999*");
+        Assert.Equal("XY",result);
+    }
 }

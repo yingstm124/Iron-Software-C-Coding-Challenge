@@ -4,6 +4,7 @@ public class Phone
 {
     private Dictionary<char, char[]> characterList = new Dictionary<char, char[]>()
         {
+            {'0', [ ' ' ]},
             {'1', [ '&', '\'', '(']},
             {'2', [ 'A', 'B', 'C' ]},
             {'3', [ 'D', 'E', 'F' ]},
@@ -19,7 +20,6 @@ public class Phone
     {
         // process
         string translateText = "";
-        char[] specialCharacter = [' ', '*', '#'];
 
         int start = 0;
         int end = 0;
@@ -28,18 +28,20 @@ public class Phone
             if (i == 0)
                 continue;
 
+            if (input[end] == '#')
+                break;
+
             if (input[i] == input[end])
             {
                 end = i;
             }
             else
             {
-                if (!specialCharacter.Contains(input[end]))
+                if (Char.IsDigit(input[end]))
                 {
-                    var _allCharacter = characterList[input[end]];
-                    translateText += _allCharacter[(end - start) % _allCharacter.Length];
+                    translateText += translateChar(input[end], end - start);
                 }
-                if (input[i] == '*')
+                if (input[i] == '*' && translateText != "")
                 {
                     translateText = translateText.Remove(translateText.Length - 1);
                 }
@@ -48,6 +50,17 @@ public class Phone
             }
         }
 
+        if (Char.IsDigit(input[end]))
+        {
+            translateText += translateChar(input[end], end - start);
+        }
+
         return translateText;
+    }
+
+    private char translateChar(char character, int repeatAmount)
+    {
+        var _allCharacter = characterList[character];
+        return _allCharacter[(repeatAmount) % _allCharacter.Length];
     }
 };
