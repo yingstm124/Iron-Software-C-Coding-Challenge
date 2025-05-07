@@ -124,4 +124,12 @@ public class UnitTest
         var result = new Phone().OldPhonePad("99 999 9999*");
         Assert.Equal("XY",result);
     }
+
+    [Fact]
+    [Description("Input '222222222' (key 2 pressed 9 times) should show C")]
+    public void InputWithNineConsecutive2s_ShouldShowC()
+    {
+        var result = new Phone().OldPhonePad("222222222");
+        Assert.Equal("C", result);
+    }
 }
